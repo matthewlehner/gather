@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :gather, Gather.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASSWORD"),
   database: "gather_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
