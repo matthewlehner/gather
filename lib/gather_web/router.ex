@@ -19,7 +19,12 @@ defmodule GatherWeb.Router do
     get "/", PageController, :index
   end
 
+  pipeline :collector do
+    plug :accepts, ["png", "svg+xml", "image/*"]
+  end
+
   scope "/", GatherWeb do
+    pipe_through :collector
     get "/collect", PageViewController, :create
   end
 
