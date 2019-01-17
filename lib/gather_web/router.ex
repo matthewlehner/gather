@@ -19,6 +19,10 @@ defmodule GatherWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", GatherWeb do
+    get "/collect", PageViewController, :create
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", GatherWeb do
   #   pipe_through :api
