@@ -9,9 +9,9 @@ defmodule GatherWeb.PageViewControllerTest do
         get(
           conn,
           Routes.page_view_path(conn, :create,
-            pathname: "testing",
-            hostname: "pixelunion.net",
-            referrer: "awebsite.com"
+            p: "testing",
+            h: "pixelunion.net",
+            r: "awebsite.com"
           )
         )
 
