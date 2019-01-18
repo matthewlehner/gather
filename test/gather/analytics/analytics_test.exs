@@ -33,5 +33,10 @@ defmodule Gather.AnalyticsTest do
     test "create_page_view/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Analytics.create_page_view(@invalid_attrs)
     end
+
+    test "list_page_views/0" do
+      page_view = page_view_fixture()
+      assert [page_view] == Analytics.list_page_views()
+    end
   end
 end

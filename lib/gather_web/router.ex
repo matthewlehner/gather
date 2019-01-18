@@ -28,6 +28,12 @@ defmodule GatherWeb.Router do
     get "/collect", PageViewController, :create
   end
 
+  scope "/admin", GatherWeb.Admin, as: :admin do
+    pipe_through :browser
+
+    resources "/page_views", PageViewsController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", GatherWeb do
   #   pipe_through :api
