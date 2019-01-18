@@ -14,6 +14,6 @@ defmodule Gather.Analytics.PageView do
   def changeset(page_view, attrs) do
     page_view
     |> cast(attrs, [:hostname, :pathname, :referrer])
-    |> validate_required([:hostname, :pathname, :referrer])
+    |> validate_required([:hostname, :pathname])
   end
 end
