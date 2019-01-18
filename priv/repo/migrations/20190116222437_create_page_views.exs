@@ -7,7 +7,7 @@ defmodule Gather.Repo.Migrations.CreatePageViews do
       add(:pathname, :string)
       add(:referrer, :string)
 
-      timestamps()
+      timestamps(updated_at: false)
     end
   end
 end
