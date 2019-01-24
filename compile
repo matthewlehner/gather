@@ -1,0 +1,5 @@
+cd $phoenix_dir
+cd assets
+yarn deploy
+cd $phoenix_dir
+mix "${phoenix_ex}.digest"
