@@ -1,20 +1,23 @@
-# Gather
+# Gather Analytics
 
-To start your Phoenix server:
+To set up the app:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+- Install dependencies with `mix deps.get`
+- Edit the database configuration in `config/dev.exs` and `config/test.exs`
+- Create and migrate your database with `mix ecto.setup`
+- Install Node.js dependencies with `cd assets && yarn install`
+- Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+# Database Configuration
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+```elixir
+# Configure your database
+config :gather, Gather.Repo,
+  username: "my postgres user name", # Update this line!
+  password: "my postgres password",  # and this one, too!
+  database: "gather_dev",
+  hostname: "localhost",
+  pool_size: 10
+```
