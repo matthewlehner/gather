@@ -11,9 +11,10 @@ defmodule Gather.Application do
       # Start the Ecto repository
       Gather.Repo,
       # Start the endpoint when the application starts
-      GatherWeb.Endpoint
+      GatherWeb.Endpoint,
       # Starts a worker by calling: Gather.Worker.start_link(arg)
       # {Gather.Worker, arg},
+      Gather.Analytics.Collector.Supervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
