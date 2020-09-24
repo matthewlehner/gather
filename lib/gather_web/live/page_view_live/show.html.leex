@@ -1,0 +1,32 @@
+<h1>Show Page view</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, GatherWeb.PageViewLive.FormComponent,
+    id: @page_view.id,
+    title: @page_title,
+    action: @live_action,
+    page_view: @page_view,
+    return_to: Routes.page_view_show_path(@socket, :show, @page_view) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Hostname:</strong>
+    <%= @page_view.hostname %>
+  </li>
+
+  <li>
+    <strong>Pathname:</strong>
+    <%= @page_view.pathname %>
+  </li>
+
+  <li>
+    <strong>Referrer:</strong>
+    <%= @page_view.referrer %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.page_view_show_path(@socket, :edit, @page_view), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.page_view_index_path(@socket, :index) %></span>

@@ -1,0 +1,39 @@
+<h1>Listing Page views</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, GatherWeb.PageViewLive.FormComponent,
+    id: @page_view.id || :new,
+    title: @page_title,
+    action: @live_action,
+    page_view: @page_view,
+    return_to: Routes.page_view_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hostname</th>
+      <th>Pathname</th>
+      <th>Referrer</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="page_views">
+    <%= for page_view <- @page_views do %>
+      <tr id="page_view-<%= page_view.id %>">
+        <td><%= page_view.hostname %></td>
+        <td><%= page_view.pathname %></td>
+        <td><%= page_view.referrer %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.page_view_show_path(@socket, :show, page_view) %></span>
+          <span><%= live_patch "Edit", to: Routes.page_view_index_path(@socket, :edit, page_view) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: page_view.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Page view", to: Routes.page_view_index_path(@socket, :new) %></span>
