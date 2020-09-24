@@ -1,3 +1,7 @@
+@tailwind base;
+
+@tailwind components;
+
 /* This file is for your main application css. */
 @import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
@@ -89,3 +93,5 @@
   display: block;
   margin: -1rem 0 2rem;
 }
+
+@tailwind utilities;
