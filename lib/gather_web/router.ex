@@ -14,6 +14,16 @@ defmodule GatherWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :ingester_api do
+    plug :accepts, ["png", "svg+xml", "image/*"]
+  end
+
+  scope "/", GatherWeb do
+    pipe_through :ingester_api
+
+    get "/collect", PageViewCollectionController, :create
+  end
+
   scope "/", GatherWeb do
     pipe_through :browser
 
