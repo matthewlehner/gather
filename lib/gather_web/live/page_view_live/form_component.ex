@@ -41,7 +41,7 @@ defmodule GatherWeb.PageViewLive.FormComponent do
   end
 
   defp save_page_view(socket, :new, page_view_params) do
-    case Analytics.create_page_view(page_view_params) do
+    case Analytics.validate_page_view(page_view_params) do
       {:ok, _page_view} ->
         {:noreply,
          socket

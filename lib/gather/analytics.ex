@@ -8,6 +8,7 @@ defmodule Gather.Analytics do
 
   alias Gather.Analytics.PageView
   alias Gather.Analytics.Metrics
+  alias Gather.Analytics.Collector
 
   @doc """
   Returns the list of page_views.
@@ -43,17 +44,40 @@ defmodule Gather.Analytics do
 
   ## Examples
 
-      iex> create_page_view(%{field: value})
+      iex> validate_page_view(%{field: value})
       {:ok, %PageView{}}
 
-      iex> create_page_view(%{field: bad_value})
+      iex> validate_page_view(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
-
-  """
-  def create_page_view(attrs \\ %{}) do
+  
+"""
+  def validate_page_view(attrs \\ %{}) do
     %PageView{}
     |> PageView.changeset(attrs)
-    |> Repo.insert()
+    |> Ecto.Changeset.apply_action(:validate)
+  end
+
+  @doc """
+  Enqueues a page_view for processing
+
+      iex> enqueue_page_view(%PageView{field: value})
+      :ok
+  """
+  def enqueue_page_view(%PageView{} = page_view) do
+    Collector.enqueue_page_view(page_view)
+  end
+
+  @doc """
+  Inserts a page_view into the database.
+
+  ## Examples
+
+      iex> insert_page_view!(%{field: value})
+      %PageView{}
+
+  """
+  def insert_page_view!(page_view \\ %PageView{}) do
+    Repo.insert!(page_view)
   end
 
   @doc """
