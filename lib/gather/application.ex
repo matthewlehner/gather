@@ -11,6 +11,8 @@ defmodule Gather.Application do
       Gather.Repo,
       # Start the Telemetry supervisor
       GatherWeb.Telemetry,
+      # Start the Frontend Metrics supervisor
+      Gather.Analytics.Collector.Supervisor,
       # Start the PubSub system
       {Phoenix.PubSub, name: Gather.PubSub},
       # Start the Endpoint (http/https)
