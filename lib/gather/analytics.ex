@@ -9,6 +9,7 @@ defmodule Gather.Analytics do
   alias Gather.Analytics.PageView
   alias Gather.Analytics.Metrics
   alias Gather.Analytics.Collector
+  alias Phoenix.PubSub
 
   @doc """
   Returns the list of page_views.
@@ -49,7 +50,7 @@ defmodule Gather.Analytics do
 
       iex> validate_page_view(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
-  
+
 """
   def validate_page_view(attrs \\ %{}) do
     %PageView{}
@@ -140,4 +141,7 @@ defmodule Gather.Analytics do
     page_views = list_page_views()
     Metrics.create(page_views)
   end
+
+  def subscribe(), do: PubSub.subscribe(Gather.PubSub, "analytics")
+  def unsubscribe(), do: PubSub.unsubscribe(Gather.PubSub, "analytics")
 end
