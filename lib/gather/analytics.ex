@@ -7,6 +7,7 @@ defmodule Gather.Analytics do
   alias Gather.Repo
 
   alias Gather.Analytics.PageView
+  alias Gather.Analytics.Metrics
 
   @doc """
   Returns the list of page_views.
@@ -100,5 +101,19 @@ defmodule Gather.Analytics do
   """
   def change_page_view(%PageView{} = page_view, attrs \\ %{}) do
     PageView.changeset(page_view, attrs)
+  end
+
+
+  @doc """
+  Returns a `Gather.Analytics.Metrics` with a summary of page view data
+
+  ## Examples
+
+      iex> get_page_view_data()
+      %Gather.Analytics.Metrics{page_views: 0, pages: 0, referrers: 0}
+  """
+  def get_page_view_data do
+    page_views = list_page_views()
+    Metrics.create(page_views)
   end
 end

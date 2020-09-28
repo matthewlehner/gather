@@ -35,6 +35,7 @@ defmodule GatherWeb.Router do
     live "/page_views", PageViewLive.Index, :index
     live "/page_views/new", PageViewLive.Index, :new
     live "/page_views/:id/edit", PageViewLive.Index, :edit
+    live "/page_views/overview", PageViewLive.Overview
 
     live "/page_views/:id", PageViewLive.Show, :show
     live "/page_views/:id/show/edit", PageViewLive.Show, :edit

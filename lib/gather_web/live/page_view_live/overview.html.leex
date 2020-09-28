@@ -1,0 +1,35 @@
+<h2><%= @analytics.page_views %> Page Views</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Top Pages</th>
+      <th>Views</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for {path, count} <- @analytics.pages do %>
+      <tr>
+        <td><%= path %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Top Referrers</th>
+      <th>Views</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for {referrer, count} <- @analytics.referrers do %>
+      <tr>
+      <td><%= referrer %></td>
+      <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
