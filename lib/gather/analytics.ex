@@ -1,4 +1,6 @@
 defmodule Gather.Analytics do
+  defstruct [:page_views, :pages, :referrers]
+
   @moduledoc """
   The Analytics context.
   """
@@ -100,5 +102,31 @@ defmodule Gather.Analytics do
   """
   def change_page_view(%PageView{} = page_view, attrs \\ %{}) do
     PageView.changeset(page_view, attrs)
+  end
+
+  def get_page_view_data do
+    page_views = list_page_views()
+
+    total_page_views = length(page_views)
+
+    top_pages =
+      page_views
+      |> Enum.reduce(%{}, fn page_view, acc ->
+        Map.update(acc, page_view.pathname, 0, &(&1 + 1))
+      end)
+      |> Enum.to_list()
+
+    top_referrers =
+      page_views
+      |> Enum.reduce(%{}, fn page_view, acc ->
+        Map.update(acc, page_view.referrer, 0, &(&1 + 1))
+      end)
+      |> Enum.to_list()
+
+    %__MODULE__{
+      page_views: total_page_views,
+      pages: top_pages,
+      referrers: top_referrers
+    }
   end
 end
