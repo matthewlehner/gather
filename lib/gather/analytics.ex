@@ -51,7 +51,7 @@ defmodule Gather.Analytics do
       iex> validate_page_view(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
-"""
+  """
   def validate_page_view(attrs \\ %{}) do
     %PageView{}
     |> PageView.changeset(attrs)
@@ -127,7 +127,6 @@ defmodule Gather.Analytics do
   def change_page_view(%PageView{} = page_view, attrs \\ %{}) do
     PageView.changeset(page_view, attrs)
   end
-
 
   @doc """
   Returns a `Gather.Analytics.Metrics` with a summary of page view data
