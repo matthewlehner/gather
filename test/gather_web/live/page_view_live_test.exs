@@ -14,8 +14,9 @@ defmodule GatherWeb.PageViewLiveTest do
   @invalid_attrs %{hostname: nil, pathname: nil, referrer: nil}
 
   defp fixture(:page_view) do
-    {:ok, page_view} = Analytics.create_page_view(@create_attrs)
-    page_view
+    with {:ok, page_view} <- Analytics.validate_page_view(@create_attrs) do
+      Analytics.insert_page_view!(page_view)
+    end
   end
 
   defp create_page_view(_) do
