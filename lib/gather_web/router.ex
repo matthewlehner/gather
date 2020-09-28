@@ -27,7 +27,10 @@ defmodule GatherWeb.Router do
   scope "/", GatherWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", PageLive
+    live "/circle", PageLive, :circle
+    live "/square", PageLive, :square
+    live "/triangle", PageLive, :triangle
 
     live "/page_views", PageViewLive.Index, :index
     live "/page_views/new", PageViewLive.Index, :new

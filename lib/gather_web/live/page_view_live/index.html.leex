@@ -27,7 +27,7 @@
         <td><%= page_view.referrer %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.page_view_show_path(@socket, :show, page_view) %></span>
+          <span><%= live_patch "Show", to: Routes.page_view_show_path(@socket, :show, page_view) %></span>
           <span><%= live_patch "Edit", to: Routes.page_view_index_path(@socket, :edit, page_view) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: page_view.id, data: [confirm: "Are you sure?"] %></span>
         </td>

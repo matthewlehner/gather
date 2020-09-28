@@ -1,0 +1,19 @@
+<section class="row">
+  <article class="column">
+    <%= live_patch "Circle", to: Routes.page_path(@socket, :circle) %>
+  </article>
+  <article class="column">
+    <%= live_patch "Square", to: Routes.page_path(@socket, :square) %>
+  </article>
+  <article class="column">
+    <%= live_patch "Triangle", to: Routes.page_path(@socket, :triangle) %>
+  </article>
+</section>
+
+<%= if @live_action do %>
+  <section class="row center">
+    <div class="<%= @live_action %>" />
+  </section>
+<% end %>
+
+<%= @counter %>
