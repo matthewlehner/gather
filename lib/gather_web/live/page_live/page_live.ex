@@ -3,7 +3,7 @@ defmodule GatherWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :page_title, "Welcome")}
   end
 
   @impl true
@@ -24,6 +24,6 @@ defmodule GatherWeb.PageLive do
   end
 
   defp apply_action(socket, _, _) do
-    assign(socket, :page_title, "Welcome")
+    socket
   end
 end
