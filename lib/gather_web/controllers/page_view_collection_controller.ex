@@ -2,14 +2,14 @@ defmodule GatherWeb.PageViewCollectionController do
   use GatherWeb, :controller
 
   alias Gather.Analytics
-  alias Gather.Analytics.PageView
 
   # A 1 byte gif – the smallest payload we can return ;)
   @response_gif Base.decode64!("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
 
   def create(conn, params) do
     with {:ok, attrs} <- params_to_page_view_attrs(params),
-         {:ok, %PageView{}} <- Analytics.create_page_view(attrs) do
+         {:ok, page_view} <- Analytics.create_page_view(attrs),
+         :ok <- Analytics.enqueue_page_view(page_view) do
       conn
       |> put_resp_header("tk", "N")
       |> put_resp_header("content-type", "image/gif")

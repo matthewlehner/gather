@@ -18,13 +18,11 @@ defmodule Gather.AnalyticsTest do
     }
     @invalid_attrs %{hostname: nil, pathname: nil, referrer: nil}
 
-    def page_view_fixture(attrs \\ %{}) do
-      {:ok, page_view} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Analytics.create_page_view()
-
-      page_view
+    def page_view_fixture do
+      with {:ok, page_view} <- Analytics.create_page_view(@valid_attrs),
+           {:ok, page_view} <- Analytics.insert_page_view(page_view) do
+        page_view
+      end
     end
 
     test "list_page_views/0 returns all page_views" do
