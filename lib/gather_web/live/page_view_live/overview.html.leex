@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= for {path, count} <- Enum.to_list(@pages) do %>
+    <%= for {path, count} <- @pages do %>
       <tr>
         <td><%= path %></td>
         <td><%= count %></td>
@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= for {referrer, count} <- Enum.to_list(@referrers) do %>
+    <%= for {referrer, count} <- @referrers do %>
       <tr>
       <td><%= referrer %></td>
       <td><%= count %></td>
