@@ -141,14 +141,12 @@ defmodule Gather.Analytics do
       |> Enum.reduce(%{}, fn page_view, acc ->
         Map.update(acc, page_view.pathname, 0, &(&1 + 1))
       end)
-      |> Enum.to_list()
 
     top_referrers =
       page_views
       |> Enum.reduce(%{}, fn page_view, acc ->
         Map.update(acc, page_view.referrer, 0, &(&1 + 1))
       end)
-      |> Enum.to_list()
 
     %__MODULE__{
       page_views: total_page_views,
