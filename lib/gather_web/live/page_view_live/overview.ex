@@ -13,16 +13,18 @@ defmodule GatherWeb.PageViewLive.Overview do
   end
 
   @impl true
-  def handle_info(
-        {:recorded, %{pathname: pathname, referrer: referrer}},
-        socket
-      ) do
-    %{assigns: %{views: views, pages: pages, referrers: referrers}} = socket
-    new_view_count = views + 1
-    {_, new_pages} = Map.get_and_update(pages, pathname, &increment/1)
-    {_, new_referrers} = Map.get_and_update(referrers, referrer, &increment/1)
+  def handle_info({:recorded, metric}, socket) do
+    %{pathname: pathname, referrer: referrer} = metric
 
-    {:noreply, assign(socket, pages: new_pages, views: new_view_count, referrers: new_referrers)}
+    {:noreply,
+     socket
+     |> update(:views, &(&1 + 1))
+     |> update(:pages, fn pages ->
+       Map.get_and_update!(pages, pathname, &increment/1)
+     end)
+     |> update(:referrers, fn referrers ->
+       Map.get_and_update!(referrers, referrer, &increment/1)
+     end)}
   end
 
   defp increment(current) when is_integer(current), do: {current, current + 1}
