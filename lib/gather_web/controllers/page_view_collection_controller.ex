@@ -8,8 +8,7 @@ defmodule GatherWeb.PageViewCollectionController do
 
   def create(conn, params) do
     with {:ok, attrs} <- params_to_page_view_attrs(params),
-         {:ok, page_view} <- Analytics.validate_page_view(attrs),
-         :ok <- Analytics.enqueue_page_view(page_view) do
+         {:ok, _page_view} <- Analytics.create_page_view(attrs) do
       conn
       |> put_resp_header("tk", "N")
       |> put_resp_header("content-type", "image/gif")
