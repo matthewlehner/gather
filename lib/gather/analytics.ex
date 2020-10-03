@@ -41,7 +41,27 @@ defmodule Gather.Analytics do
   def get_page_view!(id), do: Repo.get!(PageView, id)
 
   @doc """
-  Creates a page_view.
+  Creates a page view and persists it to the database.
+  """
+
+  def create_page_view(attrs) do
+    %PageView{}
+    |> PageView.changeset(attrs)
+    |> Repo.insert()
+    |> broadcast()
+  end
+
+  def broadcast({:ok, page_view}) do
+    Phoenix.PubSub.broadcast(Gather.PubSub, "analytics", {:recorded, page_view})
+
+    {:ok, page_view}
+  end
+
+  def broadcast(error_resp), do: error_resp
+
+  @doc """
+  Validates page view attributes and returns with the same signature as
+  `Repo.insert/2` or `Repo.update/2`.
 
   ## Examples
 
