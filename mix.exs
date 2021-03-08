@@ -10,7 +10,19 @@ defmodule Gather.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [
+        plt_add_deps: :apps_tree,
+        plt_add_apps: [:mix, :ex_unit],
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ],
+      preferred_cli_env: [
+        check: :test,
+        credo: :test,
+        dialyzer: :test,
+        doctor: :test,
+        sobelow: :test
+      ]
     ]
   end
 
@@ -46,13 +58,13 @@ defmodule Gather.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       # Dev and test dependencies
-      {:credo, ">= 0.0.0", only: [:dev], runtime: false},
-      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
-      {:ex_check, "~> 0.14.0", only: [:dev], runtime: false},
-      {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false},
+      {:credo, ">= 0.0.0", only: [:test], runtime: false},
+      {:dialyxir, ">= 0.0.0", only: [:test], runtime: false},
+      {:ex_check, "~> 0.14.0", only: [:test], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: [:test], runtime: false},
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:sobelow, ">= 0.0.0", only: [:dev], runtime: false}
+      {:sobelow, ">= 0.0.0", only: [:test], runtime: false}
     ]
   end
 

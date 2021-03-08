@@ -15,7 +15,10 @@
   tools: [
     ## curated tools may be disabled (e.g. the check for compilation warnings)
     {:sobelow, false},
-    {:npm_test, false}
+    {:npm_test, false},
+    {:compiler, env: %{"MIX_ENV" => "test"}},
+    {:formatter, env: %{"MIX_ENV" => "test"}},
+    {:ex_doc, env: %{"MIX_ENV" => "test"}}
 
     ## ...or have command & args adjusted (e.g. enable skip comments for sobelow)
     # {:sobelow, "mix sobelow --exit --skip"},
