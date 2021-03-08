@@ -21,12 +21,8 @@ config :gather, GatherWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch",
-      "--watch-options-stdin",
+    yarn: [
+      "watch",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

@@ -1,5 +1,4 @@
 const path = require("path");
-const glob = require("glob");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
@@ -13,7 +12,7 @@ module.exports = (env, options) => {
       minimizer: ["...", new CssMinimizerPlugin()],
     },
     entry: {
-      app: glob.sync("./vendor/**/*.js").concat(["./js/app.js"]),
+      app: ["./js/app.js"],
     },
     output: {
       filename: "[name].js",
@@ -27,12 +26,16 @@ module.exports = (env, options) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: require.resolve("babel-loader"),
           },
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+          use: [
+            MiniCssExtractPlugin.loader,
+            require.resolve("css-loader"),
+            require.resolve("postcss-loader"),
+          ],
         },
       ],
     },
