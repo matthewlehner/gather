@@ -1,4 +1,5 @@
 defmodule GatherWeb.PageLive do
+  @moduledoc false
   use GatherWeb, :live_view
 
   @impl true

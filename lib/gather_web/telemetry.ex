@@ -1,4 +1,7 @@
 defmodule GatherWeb.Telemetry do
+  @moduledoc """
+  Sets up the telemetry poller to report to LiveDashboard
+  """
   use Supervisor
   import Telemetry.Metrics
 

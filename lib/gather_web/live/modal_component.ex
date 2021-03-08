@@ -1,4 +1,7 @@
 defmodule GatherWeb.ModalComponent do
+  @moduledoc """
+  A general use modal component.
+  """
   use GatherWeb, :live_component
 
   @impl true

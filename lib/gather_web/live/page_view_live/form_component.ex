@@ -1,4 +1,5 @@
 defmodule GatherWeb.PageViewLive.FormComponent do
+  @moduledoc false
   use GatherWeb, :live_component
 
   alias Gather.Analytics

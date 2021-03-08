@@ -1,4 +1,5 @@
 defmodule GatherWeb.PageViewLive.Show do
+  @moduledoc false
   use GatherWeb, :live_view
 
   alias Gather.Analytics

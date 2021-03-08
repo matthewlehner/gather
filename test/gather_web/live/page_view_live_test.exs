@@ -43,7 +43,7 @@ defmodule GatherWeb.PageViewLiveTest do
 
       assert index_live
              |> form("#page_view-form", page_view: @invalid_attrs)
-             |> render_change() =~ "can&apos;t be blank"
+             |> render_change() =~ "can&#39;t be blank"
 
       {:ok, _, html} =
         index_live
@@ -65,7 +65,7 @@ defmodule GatherWeb.PageViewLiveTest do
 
       assert index_live
              |> form("#page_view-form", page_view: @invalid_attrs)
-             |> render_change() =~ "can&apos;t be blank"
+             |> render_change() =~ "can&#39;t be blank"
 
       {:ok, _, html} =
         index_live
@@ -105,7 +105,7 @@ defmodule GatherWeb.PageViewLiveTest do
 
       assert show_live
              |> form("#page_view-form", page_view: @invalid_attrs)
-             |> render_change() =~ "can&apos;t be blank"
+             |> render_change() =~ "can&#39;t be blank"
 
       {:ok, _, html} =
         show_live

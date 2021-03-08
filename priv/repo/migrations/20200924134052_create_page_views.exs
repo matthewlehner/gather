@@ -9,6 +9,5 @@ defmodule Gather.Repo.Migrations.CreatePageViews do
 
       timestamps(updated_at: false)
     end
-
   end
 end

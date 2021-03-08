@@ -15,6 +15,7 @@ defmodule Gather.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -28,10 +29,10 @@ defmodule Gather.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Gather.Repo)
+    :ok = Sandbox.checkout(Gather.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Gather.Repo, {:shared, self()})
+      Sandbox.mode(Gather.Repo, {:shared, self()})
     end
 
     :ok
