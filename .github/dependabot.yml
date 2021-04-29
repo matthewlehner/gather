@@ -1,0 +1,45 @@
+version: 2
+updates:
+- package-ecosystem: mix
+  directory: "/"
+  schedule:
+    interval: daily
+    timezone: America/Vancouver
+  open-pull-requests-limit: 10
+  reviewers:
+  - matthewlehner
+  ignore:
+  - dependency-name: ecto_sql
+    versions:
+    - 3.5.4
+    - 3.6.0
+  - dependency-name: ex_doc
+    versions:
+    - 0.24.0
+    - 0.24.1
+  - dependency-name: phoenix
+    versions:
+    - 1.5.7
+    - 1.5.8
+  - dependency-name: floki
+    versions:
+    - 0.29.0
+    - 0.30.0
+  - dependency-name: postgrex
+    versions:
+    - 0.15.8
+  - dependency-name: phoenix_html
+    versions:
+    - 2.14.3
+  - dependency-name: phoenix_live_view
+    versions:
+    - 0.14.8
+  - dependency-name: phoenix_live_reload
+    versions:
+    - 1.3.0
+  - dependency-name: plug_cowboy
+    versions:
+    - 2.4.1
+  - dependency-name: phoenix_live_dashboard
+    versions:
+    - 0.3.6
