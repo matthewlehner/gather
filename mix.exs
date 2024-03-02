@@ -60,7 +60,7 @@ defmodule Gather.MixProject do
       # Dev and test dependencies
       {:credo, ">= 0.0.0", only: [:test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:test], runtime: false},
-      {:ex_check, "~> 0.14.0", only: [:test], runtime: false},
+      {:ex_check, "~> 0.16.0", only: [:test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: [:test], runtime: false},
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
