@@ -46,7 +46,7 @@ defmodule Gather.MixProject do
   defp deps do
     [
       {:ecto_sql, "~> 3.4"},
-      {:gettext, "~> 0.11"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.5.5"},
       {:phoenix_ecto, "~> 4.1"},
